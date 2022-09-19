@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:3306
--- Généré le : ven. 16 sep. 2022 à 09:54
+-- Généré le : lun. 19 sep. 2022 à 08:00
 -- Version du serveur : 5.7.33
 -- Version de PHP : 7.4.19
 
@@ -39,16 +39,14 @@ CREATE TABLE `adresse` (
 --
 
 INSERT INTO `adresse` (`IDAdresse`, `Départements`, `Communes`, `Rue`) VALUES
-(1, '76', 'Gournay-en-Bray', '4 rue Languedoc'),
-(2, '60', 'Beauvais', '10 rue des Lillas'),
-(3, '59', 'Maubeuge', '5 boulevard de la Paix'),
-(4, '06', 'Menton', '6 Impasse des Citrons'),
-(5, '75', 'Paris', '8 Boulevard Haussmann'),
-(6, '93', 'Saint-Denis', '10 Impasse Le Oinj'),
-(7, '76', 'Le Havre', '6 rue du Port'),
-(8, '59', 'Lille', '5 rue du Pont de Pierre'),
-(9, '06', 'Nice', '9 Boulevard des Anglaises'),
-(10, '78', 'Versaille', '11 rue du Chateau');
+(1, ' Rhône-Alpes', 'VOIRON', '28 Rue Bonnet'),
+(2, 'Île-de-France(IL)', 'CHAMPIGNY-SUR-MARNE', '28 place Maurice-Charretier'),
+(3, 'Midi-Pyrénées(MP)', 'MILLAU', '20 rue Bonneterie'),
+(4, 'Aquitaine(AQ)', 'SAINT-MÉDARD-EN-JALLES', '73 rue des Dunes'),
+(5, 'Picardie(PI)', 'SAINT-QUENTIN', '67 rue de la Hulotais'),
+(6, 'Île-de-France(IL)', 'DRANCY', '7 rue Cazade'),
+(7, 'Haute-Normandie(HN)', 'SOTTEVILLE-LÈS-ROUEN', '84 Boulevard de Normandie'),
+(8, 'Nord-Pas-de-Calais(NP)', 'GRANDE-SYNTHE', '33 avenue Ferdinand de Lesseps');
 
 -- --------------------------------------------------------
 
@@ -67,9 +65,16 @@ CREATE TABLE `chasser` (
 --
 
 INSERT INTO `chasser` (`IDEspèces`, `IDParties2chasses`, `Nbr`) VALUES
-(1, 6, 10),
-(2, 9, 20),
-(3, 4, 0);
+(1, 8, 8),
+(2, 4, 3),
+(3, 10, 30),
+(4, 9, 12),
+(5, 3, 2),
+(6, 5, 11),
+(7, 6, 20),
+(8, 1, 5),
+(9, 2, 10),
+(10, 7, 6);
 
 -- --------------------------------------------------------
 
@@ -87,16 +92,16 @@ CREATE TABLE `chasseurs` (
 --
 
 INSERT INTO `chasseurs` (`IDChasseurs`, `Pseudo`) VALUES
-(1, 'Jo L\'Indien'),
-(2, 'Flash Gordon'),
-(3, 'Goldorak'),
-(4, 'Boubou'),
-(5, 'Snoop'),
-(6, 'Ivory'),
-(7, 'Malcom'),
-(8, 'Clint'),
-(9, 'Serge'),
-(10, 'Dieudoné Mbalambala');
+(1, 'Halim'),
+(2, 'Fred'),
+(3, 'Karim'),
+(4, 'Greg'),
+(5, 'Steph'),
+(6, 'Jimmy'),
+(7, 'Camille'),
+(8, 'Théo'),
+(9, 'Cédric'),
+(10, 'Bennoit');
 
 -- --------------------------------------------------------
 
@@ -117,16 +122,16 @@ CREATE TABLE `parties_chasses` (
 --
 
 INSERT INTO `parties_chasses` (`IDParties2chasses`, `dateP`, `Points`, `IDChasseurs`, `IDAdresse`) VALUES
-(1, '2022-01-10', 10, 2, 2),
-(2, '2022-02-03', 20, 5, 5),
-(3, '2022-05-12', 15, 3, 10),
-(4, '2022-10-03', 0, 4, 4),
-(5, '2022-05-14', 40, 5, 5),
-(6, '2022-09-21', 30, 1, 10),
-(7, '2022-09-10', 15, 1, 7),
-(8, '2022-09-04', 60, 5, 1),
-(9, '2022-09-16', 10, 7, 4),
-(10, '2022-05-10', 25, 9, 3);
+(1, '2022-01-16', 50, 8, 8),
+(2, '2022-01-21', 20, 3, 7),
+(3, '2022-02-11', 30, 10, 6),
+(4, '2022-04-01', 100, 6, 5),
+(5, '2022-05-02', 70, 9, 5),
+(6, '2022-05-03', 0, 7, 4),
+(7, '2022-06-06', 50, 5, 3),
+(8, '2022-06-08', 110, 4, 2),
+(9, '2022-07-03', 80, 2, 6),
+(10, '2022-09-16', 10, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -136,24 +141,25 @@ INSERT INTO `parties_chasses` (`IDParties2chasses`, `dateP`, `Points`, `IDChasse
 
 CREATE TABLE `poissons` (
   `IDEspèces` int(11) NOT NULL,
-  `Niveaux` int(11) DEFAULT NULL
+  `Niveaux` int(11) DEFAULT NULL,
+  `IDChasseurs` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `poissons`
 --
 
-INSERT INTO `poissons` (`IDEspèces`, `Niveaux`) VALUES
-(1, 1),
-(2, 2),
-(3, 3),
-(4, 4),
-(5, 5),
-(6, 6),
-(7, 7),
-(8, 8),
-(9, 9),
-(10, 10);
+INSERT INTO `poissons` (`IDEspèces`, `Niveaux`, `IDChasseurs`) VALUES
+(1, 5, 8),
+(2, 2, 3),
+(3, 9, 6),
+(4, 10, 10),
+(5, 4, 2),
+(6, 1, 1),
+(7, 6, 8),
+(8, 3, 6),
+(9, 8, 4),
+(10, 7, 1);
 
 --
 -- Index pour les tables déchargées
@@ -190,7 +196,8 @@ ALTER TABLE `parties_chasses`
 -- Index pour la table `poissons`
 --
 ALTER TABLE `poissons`
-  ADD PRIMARY KEY (`IDEspèces`);
+  ADD PRIMARY KEY (`IDEspèces`),
+  ADD KEY `IDChasseurs` (`IDChasseurs`);
 
 --
 -- Contraintes pour les tables déchargées
@@ -209,6 +216,12 @@ ALTER TABLE `chasser`
 ALTER TABLE `parties_chasses`
   ADD CONSTRAINT `parties_chasses_ibfk_1` FOREIGN KEY (`IDChasseurs`) REFERENCES `chasseurs` (`IDChasseurs`),
   ADD CONSTRAINT `parties_chasses_ibfk_2` FOREIGN KEY (`IDAdresse`) REFERENCES `adresse` (`IDAdresse`);
+
+--
+-- Contraintes pour la table `poissons`
+--
+ALTER TABLE `poissons`
+  ADD CONSTRAINT `poissons_ibfk_1` FOREIGN KEY (`IDChasseurs`) REFERENCES `chasseurs` (`IDChasseurs`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
