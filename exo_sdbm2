@@ -1,0 +1,193 @@
+-- MySQL dump 10.13  Distrib 5.5.62, for Win64 (AMD64)
+--
+-- Host: localhost    Database: exo_sdbm2
+-- ------------------------------------------------------
+-- Server version	5.7.33
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `bières`
+--
+
+DROP TABLE IF EXISTS `bières`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `bières` (
+  `IDBières` int(11) NOT NULL,
+  `Marque` varchar(50) DEFAULT NULL,
+  `Couleur` varchar(50) DEFAULT NULL,
+  `Type` varchar(50) DEFAULT NULL,
+  `IDPrixTTC` int(11) NOT NULL,
+  `IDFabricants` int(11) NOT NULL,
+  `IDOrigines` int(11) NOT NULL,
+  PRIMARY KEY (`IDBières`),
+  KEY `IDPrixTTC` (`IDPrixTTC`),
+  KEY `IDFabricants` (`IDFabricants`),
+  KEY `IDOrigines` (`IDOrigines`),
+  CONSTRAINT `bières_ibfk_1` FOREIGN KEY (`IDPrixTTC`) REFERENCES `prixttc` (`IDPrixTTC`),
+  CONSTRAINT `bières_ibfk_2` FOREIGN KEY (`IDFabricants`) REFERENCES `frabricants` (`IDFabricants`),
+  CONSTRAINT `bières_ibfk_3` FOREIGN KEY (`IDOrigines`) REFERENCES `origines` (`IDOrigines`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `bières`
+--
+
+LOCK TABLES `bières` WRITE;
+/*!40000 ALTER TABLE `bières` DISABLE KEYS */;
+INSERT INTO `bières` VALUES (1,'Heineken','Blanche','Larger',3,1,1),(2,'Desperados','Blonde','Téqula',4,1,1),(3,'Fischer','Blonde','Locale',2,1,1),(4,'Edelweiss','Blonde','Locale',2,1,1),(5,'Affligem','Blonde','Abbaye',2,1,1),(6,'Kronenbour Originale','Blanche','Locale',3,2,1),(7,'Kronenbourg Alsace','Blonde','Locale',3,2,1),(8,'Kronenbourg 1947','Blonde','Pils',2,2,1),(9,'Kronenbourg 7.2  Blanche Maltée','Blanche','Malté',2,2,1),(10,'Sierra Nevada Pale Ale ','Ambrée','IPA',2,3,2);
+/*!40000 ALTER TABLE `bières` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `frabricants`
+--
+
+DROP TABLE IF EXISTS `frabricants`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `frabricants` (
+  `IDFabricants` int(11) NOT NULL,
+  `Nom` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`IDFabricants`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `frabricants`
+--
+
+LOCK TABLES `frabricants` WRITE;
+/*!40000 ALTER TABLE `frabricants` DISABLE KEYS */;
+INSERT INTO `frabricants` VALUES (1,'Heineken'),(2,'Kronenbourg'),(3,'Sierra Nevada Brewing Company');
+/*!40000 ALTER TABLE `frabricants` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `origines`
+--
+
+DROP TABLE IF EXISTS `origines`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `origines` (
+  `IDOrigines` int(11) NOT NULL,
+  `Continents` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`IDOrigines`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `origines`
+--
+
+LOCK TABLES `origines` WRITE;
+/*!40000 ALTER TABLE `origines` DISABLE KEYS */;
+INSERT INTO `origines` VALUES (1,'Europe'),(2,'Amérique'),(3,'Asie'),(4,'Afrique'),(5,'Océanie');
+/*!40000 ALTER TABLE `origines` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `prixttc`
+--
+
+DROP TABLE IF EXISTS `prixttc`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `prixttc` (
+  `IDPrixTTC` int(11) NOT NULL,
+  `Prix_achat` decimal(15,2) DEFAULT NULL,
+  `Prix_de_vente` decimal(15,2) DEFAULT NULL,
+  `MargeSDBM` varchar(50) DEFAULT NULL,
+  `TVA` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`IDPrixTTC`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `prixttc`
+--
+
+LOCK TABLES `prixttc` WRITE;
+/*!40000 ALTER TABLE `prixttc` DISABLE KEYS */;
+INSERT INTO `prixttc` VALUES (1,2.00,3.00,'22%','20%'),(2,1.50,4.00,'22%','20%'),(3,1.00,2.50,'22%','20%'),(4,2.00,3.50,'22%','20%');
+/*!40000 ALTER TABLE `prixttc` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `se_retrouve_sur`
+--
+
+DROP TABLE IF EXISTS `se_retrouve_sur`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `se_retrouve_sur` (
+  `IDTicket` int(11) NOT NULL,
+  `IDPrixTTC` int(11) NOT NULL,
+  PRIMARY KEY (`IDTicket`,`IDPrixTTC`),
+  KEY `IDPrixTTC` (`IDPrixTTC`),
+  CONSTRAINT `se_retrouve_sur_ibfk_1` FOREIGN KEY (`IDTicket`) REFERENCES `ticket_de_vente` (`IDTicket`),
+  CONSTRAINT `se_retrouve_sur_ibfk_2` FOREIGN KEY (`IDPrixTTC`) REFERENCES `prixttc` (`IDPrixTTC`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `se_retrouve_sur`
+--
+
+LOCK TABLES `se_retrouve_sur` WRITE;
+/*!40000 ALTER TABLE `se_retrouve_sur` DISABLE KEYS */;
+INSERT INTO `se_retrouve_sur` VALUES (4,1),(1,2),(2,3),(3,4);
+/*!40000 ALTER TABLE `se_retrouve_sur` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ticket_de_vente`
+--
+
+DROP TABLE IF EXISTS `ticket_de_vente`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ticket_de_vente` (
+  `IDTicket` int(11) NOT NULL,
+  `Quantité` varchar(50) DEFAULT NULL,
+  `DateTicket` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`IDTicket`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ticket_de_vente`
+--
+
+LOCK TABLES `ticket_de_vente` WRITE;
+/*!40000 ALTER TABLE `ticket_de_vente` DISABLE KEYS */;
+INSERT INTO `ticket_de_vente` VALUES (1,'10','2022-01-10 12:35:40'),(2,'5','2022-02-20 12:38:56'),(3,'15','2022-02-20 12:38:56'),(4,'20','2022-05-11 11:38:56'),(5,'6','2022-05-11 11:38:56'),(6,'4','2022-09-20 12:06:10'),(7,'35','2022-09-20 12:07:13'),(8,'40','2022-09-20 12:07:13'),(9,'12','2022-09-20 12:07:13'),(10,'36','2022-09-20 12:07:13');
+/*!40000 ALTER TABLE `ticket_de_vente` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping routines for database 'exo_sdbm2'
+--
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2022-09-20 16:12:41
