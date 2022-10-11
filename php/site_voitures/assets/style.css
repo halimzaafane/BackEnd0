@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Silkscreen&display=swap');
+h1{
+	color: #1e29f5;
+background: #232323;
+text-shadow: 0 0 5px #FFF, 0 0 10px #FFF, 0 0 15px #FFF, 0 0 20px #49ff18, 0 0 30px #49FF18, 0 0 40px #49FF18, 0 0 55px #49FF18, 0 0 75px #49ff18;
+text-align: center;
+font-size: 5em;
+font-family: 'Silkscreen', cursive;
+
+}
+.formu{
+background-color: #4b494b, opacity:#4b494b;
+font-size: 2em;
+color: black;
+font-family: 'Silkscreen', cursive;
+
+
+}
+
+.container1{
+background-image: url(images/imageVoiture.png); /* background-image: url(path/to/image.jpg); */
+background-repeat: no-repeat;
+background-position: center;
+margin: auto;
+background-attachment: fixed; /* Fixe l'image pendant le scroll */
+background-size: cover; /* L'image prendra 100% de l'espace, quitte à la crop */
+background-position: center; /* Centre la position de l'image */
+background-repeat: no-repeat; /* Empêche l'image de se répéter en fonction de la taille d'écran */
+}
