@@ -33,7 +33,7 @@ $allvoitures = $bdd->query($sql);
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -46,31 +46,32 @@ $allvoitures = $bdd->query($sql);
     <h1>VROOMISSIMO</h1>
    <form method="GET" class="formu">
     <i class="fa fa-car" for="s"><span> Rechercher par Marque: </span></i>
-    <input type="search" name="s" placeholder=" Marques " autocomplete="off"><br/>
+    <input type="search" name="s" placeholder=" Marques " autocomplete="off" style="border-radius:10px"><br/><br/>
     <label class="fa fa-car" for="couleur"><span> Filtrer par couleur: </span></label>
-    <input type="search" id="couleur" name="couleurs" placeholder="Couleurs"><br/>
+    <input type="search" id="couleur" name="couleur" placeholder="Couleurs" style="border-radius:10px"><br/><br/>
     <label class="fa fa-car" for="kilometrage"><span> Filtrer par kilometrage: </span></label>
-    <input type="search" id="kilometrage" name="kilometrages" placeholder="Kilométrage">
-    <input type="submit" name="envoyer">
+    <input type="search" id="kilometrage" name="kilometrage" placeholder="Kilométrage" style="border-radius:10px">
+    <input class="envoyer" type="submit" name="envoyer">
    </form> 
 
    <section class="afficher_Voitures">
    <table class="table table-succes table-striped" id="jolie">
-<tr> <td> Marques </td> <td> Couleurs </td> <td> Kilométrage</td> </tr>
+<tr> <td id="td"> Marques </td> <td id="td"> Couleurs </td> <td id="td"> Kilométrage</td> </tr>
+
 </section>
-   
     <?php
     if($allvoitures->rowCount() > 0){
 while($voitures = $allvoitures->fetch()){
     ?>
     <?= "<tr><td>".$voitures['Marque']."</td>
              <td>".$voitures['Couleur_originale']."</td>
-             <td>".$voitures['kilometrage']."</td>
-         </tr><br/>\n"
+             <td>".$voitures['kilometrage']."</td></tr><br/>\n"
              ;
              
         ?>
+        
     <?php
+
 }
     }else{
         ?>
@@ -78,7 +79,14 @@ while($voitures = $allvoitures->fetch()){
         <?php
     }
     ?>
-  
+    <?php
+echo "<p>Copyright &copy; 1999-" . date("Y") . "  ZAAFANE Halim</p>";
+?>
 </div>
+
 </body>
+
+
+   
+
 </html>
