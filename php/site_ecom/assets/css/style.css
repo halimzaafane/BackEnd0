@@ -1,0 +1,37 @@
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media only screen and (max-width: 600px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+        .navbar{
+          background: red;
+        }
+      }
+      @media only screen and (min-width: 600px) {
+        .navbar{
+          background: grey;
+        }
+      }
+      @media only screen and (min-width: 768px) {
+        .navbar{
+          background: yellow;
+        }
+      }
+      @media only screen and (min-width: 992px) {
+        .navbar{
+          background: purple;
+        }
+      }
+      @media only screen and (min-width: 1200px) {
+        .navbar{
+          background: black;
+        }
+      }
+    
