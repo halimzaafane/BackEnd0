@@ -7,3 +7,8 @@ h3{
     color:green;
     font-style: oblique;
 }
+
+table{
+    color: red;
+    background: green;
+}
