@@ -1,5 +1,5 @@
 span{
-    color: red;
+    color: rgb(17, 17, 17);
     font-style: italic;
 }
 
@@ -9,6 +9,6 @@ h3{
 }
 
 table{
-    color: red;
+    color: rgb(18, 17, 17);
     background: green;
 }
