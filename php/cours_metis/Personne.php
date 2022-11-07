@@ -1,4 +1,4 @@
-<?php // Personne.php
+<?php // Personne.php 
 class Personne {
     // Les caractéristiques d'une personne
     private $nom;
@@ -48,5 +48,28 @@ $p2->afficher(); // Affiche "Je m'appelle Martin et je ne suis pas salarié."
 $p2->integerSociete("Java SARL"); // OK
 
 $p2->afficher(); // Affiche "Je m'appelle MARTIN et je travaille chez JAVA SARL "
+
+?>
+
+<?php  // Personne.php
+class Personne {
+
+    // 2 variables d'instance pour le moment non protégées
+    public $nom;
+    public $societe;
+
+    // Une méthode 
+    public function afficher(){
+        echo "Je m'appelle " . $this->nom;
+        echo " et je travaille chez " . $this->societe . "\n";
+    }
+
+}
+
+// Execution de la classe 
+echo "Bonjour";
+$p = new Personne();
+$p->nom = "Dupont";
+
 
 ?>
