@@ -1,0 +1,41 @@
+body{
+    background-image:url("https://derivates.kicker.de/image/upload/c_crop,x_1,y_124,w_6057,h_3407/w_1000,q_auto/gq5845enyzqaigv4o37b.jpg");
+    background-repeat: no-repeat, repeat;
+    background-size: cover;
+}
+
+
+.bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+  }
+
+  @media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+      font-size: 3.5rem;
+    }
+    img{
+      width:100px;
+    height: 100px;
+
+  }
+  }
+
+  svg{
+    color:red;
+  }
+
+  img{
+    width: 420px;
+  height: 420px;
+
+}
+
+  .row{
+   display:flex;
+   justify-content: space-around;
+
+  }

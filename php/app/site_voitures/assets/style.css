@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Silkscreen&display=swap');
+
+h1{
+	color: #1e29f5;
+text-align: center;
+font-size: 5em;
+font-family: 'Silkscreen', cursive;
+text-shadow: 0px 3px 3px rgba(226, 25, 25, 0.5);
+}
+
+.formu{
+padding-left:30px;
+margin-top: 100px;
+font-size: 2em;
+font-family: 'Silkscreen', cursive;
+letter-spacing: 2px;
+color: #e0dfdc;
+letter-spacing: .1em;
+color: rgba(255,255,255,.3);
+color: #042630;
+color: transparent;
+background: #380202;
+-webkit-background-clip: text;
+-moz-background-clip: text;
+background-clip: text;
+text-shadow: 0px 3px 3px rgba(12, 12, 12, 0.5);
+}
+.form{
+	border-radius: 10px;
+	margin-top: 0px;
+}
+.form:hover{
+	background: #2f09eb;
+	text-shadow: 0 0 5px #FFF, 0 0 10px #FFF, 0 0 15px #FFF, 0 0 20px #49ff18, 0 0 30px #49FF18, 0 0 40px #49FF18, 0 0 55px #49FF18, 0 0 75px #49ff18;
+	}
+
+.afficher_Voitures{
+	/* margin: auto;
+	padding:auto;
+	width: 80%;
+	width: 18rem;
+	border-top-width: 11px;
+	border-left-width: 11px; */
+	display: flex;
+	margin-top: 200px;
+	flex-wrap: wrap;
+	align-content: space-between;
+	justify-content: space-evenly;
+}
+
+.container1{
+background-image: url(images/imageVoiture.png); /* background-image: url(path/to/image.jpg); */
+background-repeat: no-repeat;
+background-position: center;
+margin: auto;
+background-attachment: fixed; /* Fixe l'image pendant le scroll */
+background-size: cover; /* L'image prendra 100% de l'espace, quitte à la crop */
+background-position: center; /* Centre la position de l'image */
+background-repeat: no-repeat; /* Empêche l'image de se répéter en fonction de la taille d'écran */
+}
+
+input{
+	float: right;
+	margin-right: 100px;
+}
+
+
+
+#td{
+	color: #49FF18;
+	font-size: 2em;
+	background: black;
+	opacity: 0.5;
+}
+
+#none{
+	color: red;
+	margin-top: 50px;
+	font-size: 2em;
+	font-family: 'Silkscreen', cursive;
+}
+
+footer{
+	background: rgb(73, 69, 69);
+	color: #FFF;
+}
+
+.alignement{
+	width: 30rem;
+    margin-top: 10px;
+    margin-bottom: 90px;
+}
+#rond{
+	border-radius: 20px;
+}
+
