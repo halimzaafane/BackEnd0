@@ -9,19 +9,19 @@ class PostController extends Controller
 {
     public function index()
     {
+         $posts = Post::all();
+
         // Supprimer la colonne à l'ID 12 dans la base de donnée
-    //  $post = Post::find(12);
+    // $post = Post::find(12);
     //  $post->delete();
     //  dd('supprimé!');
 
-        // Modifier la colonne dans la base de donnée
-    //  $post->update([
-    //     'title' => 'titre édité'
-    //  ]);  
-
-
-     $posts = Post::all();
-
+        // Modifier la colonne 1 dans la base de donnée
+        // $post = Post::find(1);
+        // $post->update([
+        // 'title' => 'titre édité'
+        //  ]);  
+     
         return view('articles', [
             'posts' => $posts
         ]);

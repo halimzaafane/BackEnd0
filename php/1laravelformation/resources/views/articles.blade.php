@@ -7,6 +7,6 @@
             <h3><a href="{{ route('post.show', ['id' => $post->id]) }}">{{ $post->title }}</a></h3>    
         @endforeach
         @else
-            <span>Aucun post en base de données</span>
+            <span>Aucun posts en base de données</span>
         @endif
     @endsection
