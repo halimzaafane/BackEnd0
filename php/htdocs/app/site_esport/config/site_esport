@@ -1,0 +1,550 @@
+-- MySQL dump 10.13  Distrib 8.0.19, for Win64 (x86_64)
+--
+-- Host: localhost    Database: site_esport
+-- ------------------------------------------------------
+-- Server version	5.5.5-10.4.24-MariaDB
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `ad_compets`
+--
+
+DROP TABLE IF EXISTS `ad_compets`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ad_compets` (
+  `ID_Admin` int(11) NOT NULL,
+  `ID_Compet` int(11) NOT NULL,
+  PRIMARY KEY (`ID_Admin`,`ID_Compet`),
+  KEY `ID_Compet` (`ID_Compet`),
+  CONSTRAINT `ad_compets_ibfk_1` FOREIGN KEY (`ID_Admin`) REFERENCES `administration` (`ID_Admin`),
+  CONSTRAINT `ad_compets_ibfk_2` FOREIGN KEY (`ID_Compet`) REFERENCES `competitions` (`ID_Compet`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ad_compets`
+--
+
+LOCK TABLES `ad_compets` WRITE;
+/*!40000 ALTER TABLE `ad_compets` DISABLE KEYS */;
+/*!40000 ALTER TABLE `ad_compets` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `admin_equipes`
+--
+
+DROP TABLE IF EXISTS `admin_equipes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `admin_equipes` (
+  `ID_equipe` int(11) NOT NULL,
+  `ID_Admin` int(11) NOT NULL,
+  PRIMARY KEY (`ID_equipe`,`ID_Admin`),
+  KEY `ID_Admin` (`ID_Admin`),
+  CONSTRAINT `admin_equipes_ibfk_1` FOREIGN KEY (`ID_equipe`) REFERENCES `equipe_esport` (`ID_equipe`),
+  CONSTRAINT `admin_equipes_ibfk_2` FOREIGN KEY (`ID_Admin`) REFERENCES `administration` (`ID_Admin`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `admin_equipes`
+--
+
+LOCK TABLES `admin_equipes` WRITE;
+/*!40000 ALTER TABLE `admin_equipes` DISABLE KEYS */;
+/*!40000 ALTER TABLE `admin_equipes` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `admini_structures`
+--
+
+DROP TABLE IF EXISTS `admini_structures`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `admini_structures` (
+  `ID_Admin` int(11) NOT NULL,
+  `ID_Structure` int(11) NOT NULL,
+  PRIMARY KEY (`ID_Admin`,`ID_Structure`),
+  KEY `ID_Structure` (`ID_Structure`),
+  CONSTRAINT `admini_structures_ibfk_1` FOREIGN KEY (`ID_Admin`) REFERENCES `administration` (`ID_Admin`),
+  CONSTRAINT `admini_structures_ibfk_2` FOREIGN KEY (`ID_Structure`) REFERENCES `structure_esport` (`ID_Structure`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `admini_structures`
+--
+
+LOCK TABLES `admini_structures` WRITE;
+/*!40000 ALTER TABLE `admini_structures` DISABLE KEYS */;
+/*!40000 ALTER TABLE `admini_structures` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `administration`
+--
+
+DROP TABLE IF EXISTS `administration`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `administration` (
+  `ID_Admin` int(11) NOT NULL,
+  `email` varchar(50) DEFAULT NULL,
+  `motdepasse` varchar(255) DEFAULT NULL,
+  `nom` varchar(50) DEFAULT NULL,
+  `prenom` varchar(50) DEFAULT NULL,
+  `pseudo` varchar(50) DEFAULT NULL,
+  `date_naissance` date DEFAULT NULL,
+  `ID_localis` int(11) NOT NULL,
+  PRIMARY KEY (`ID_Admin`),
+  KEY `ID_localis` (`ID_localis`),
+  CONSTRAINT `administration_ibfk_1` FOREIGN KEY (`ID_localis`) REFERENCES `localisation` (`ID_localis`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `administration`
+--
+
+LOCK TABLES `administration` WRITE;
+/*!40000 ALTER TABLE `administration` DISABLE KEYS */;
+/*!40000 ALTER TABLE `administration` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `classement`
+--
+
+DROP TABLE IF EXISTS `classement`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `classement` (
+  `ID_Classement` int(11) NOT NULL,
+  `echellon_classement` int(11) DEFAULT NULL,
+  `nbr_points` int(11) DEFAULT NULL,
+  `ID_Compet` int(11) NOT NULL,
+  PRIMARY KEY (`ID_Classement`),
+  KEY `ID_Compet` (`ID_Compet`),
+  CONSTRAINT `classement_ibfk_1` FOREIGN KEY (`ID_Compet`) REFERENCES `competitions` (`ID_Compet`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `classement`
+--
+
+LOCK TABLES `classement` WRITE;
+/*!40000 ALTER TABLE `classement` DISABLE KEYS */;
+/*!40000 ALTER TABLE `classement` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `competitions`
+--
+
+DROP TABLE IF EXISTS `competitions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `competitions` (
+  `ID_Compet` int(11) NOT NULL,
+  `nom_compet` varchar(50) DEFAULT NULL,
+  `date_debut_compet` date DEFAULT NULL,
+  `date_fin_compet` date DEFAULT NULL,
+  `nbr_equipes_participantes` int(11) DEFAULT NULL,
+  `image_compet` varchar(250) DEFAULT NULL,
+  `niveau_compet` varchar(50) DEFAULT NULL,
+  `ID_Jeux` int(11) NOT NULL,
+  PRIMARY KEY (`ID_Compet`),
+  KEY `ID_Jeux` (`ID_Jeux`),
+  CONSTRAINT `competitions_ibfk_1` FOREIGN KEY (`ID_Jeux`) REFERENCES `jeux` (`ID_Jeux`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `competitions`
+--
+
+LOCK TABLES `competitions` WRITE;
+/*!40000 ALTER TABLE `competitions` DISABLE KEYS */;
+/*!40000 ALTER TABLE `competitions` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `contient`
+--
+
+DROP TABLE IF EXISTS `contient`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `contient` (
+  `ID_equipe` int(11) NOT NULL,
+  `ID_Joueur` int(11) NOT NULL,
+  PRIMARY KEY (`ID_equipe`,`ID_Joueur`),
+  KEY `ID_Joueur` (`ID_Joueur`),
+  CONSTRAINT `contient_ibfk_1` FOREIGN KEY (`ID_equipe`) REFERENCES `equipe_esport` (`ID_equipe`),
+  CONSTRAINT `contient_ibfk_2` FOREIGN KEY (`ID_Joueur`) REFERENCES `joueurs` (`ID_Joueur`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `contient`
+--
+
+LOCK TABLES `contient` WRITE;
+/*!40000 ALTER TABLE `contient` DISABLE KEYS */;
+/*!40000 ALTER TABLE `contient` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `equipe_esport`
+--
+
+DROP TABLE IF EXISTS `equipe_esport`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `equipe_esport` (
+  `ID_equipe` int(11) NOT NULL,
+  `nom_equipe` varchar(50) DEFAULT NULL,
+  `date_creation` date DEFAULT NULL,
+  `division` varchar(50) DEFAULT NULL,
+  `ID_Structure` int(11) NOT NULL,
+  PRIMARY KEY (`ID_equipe`),
+  KEY `ID_Structure` (`ID_Structure`),
+  CONSTRAINT `equipe_esport_ibfk_1` FOREIGN KEY (`ID_Structure`) REFERENCES `structure_esport` (`ID_Structure`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `equipe_esport`
+--
+
+LOCK TABLES `equipe_esport` WRITE;
+/*!40000 ALTER TABLE `equipe_esport` DISABLE KEYS */;
+/*!40000 ALTER TABLE `equipe_esport` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `est_dans`
+--
+
+DROP TABLE IF EXISTS `est_dans`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `est_dans` (
+  `ID_equipe` int(11) NOT NULL,
+  `ID_Classement` int(11) NOT NULL,
+  PRIMARY KEY (`ID_equipe`,`ID_Classement`),
+  KEY `ID_Classement` (`ID_Classement`),
+  CONSTRAINT `est_dans_ibfk_1` FOREIGN KEY (`ID_equipe`) REFERENCES `equipe_esport` (`ID_equipe`),
+  CONSTRAINT `est_dans_ibfk_2` FOREIGN KEY (`ID_Classement`) REFERENCES `classement` (`ID_Classement`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `est_dans`
+--
+
+LOCK TABLES `est_dans` WRITE;
+/*!40000 ALTER TABLE `est_dans` DISABLE KEYS */;
+/*!40000 ALTER TABLE `est_dans` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `gere_joueurs`
+--
+
+DROP TABLE IF EXISTS `gere_joueurs`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `gere_joueurs` (
+  `ID_Admin` int(11) NOT NULL,
+  `ID_Joueur` int(11) NOT NULL,
+  PRIMARY KEY (`ID_Admin`,`ID_Joueur`),
+  KEY `ID_Joueur` (`ID_Joueur`),
+  CONSTRAINT `gere_joueurs_ibfk_1` FOREIGN KEY (`ID_Admin`) REFERENCES `administration` (`ID_Admin`),
+  CONSTRAINT `gere_joueurs_ibfk_2` FOREIGN KEY (`ID_Joueur`) REFERENCES `joueurs` (`ID_Joueur`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `gere_joueurs`
+--
+
+LOCK TABLES `gere_joueurs` WRITE;
+/*!40000 ALTER TABLE `gere_joueurs` DISABLE KEYS */;
+/*!40000 ALTER TABLE `gere_joueurs` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `gerer_jeux`
+--
+
+DROP TABLE IF EXISTS `gerer_jeux`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `gerer_jeux` (
+  `ID_Jeux` int(11) NOT NULL,
+  `ID_Admin` int(11) NOT NULL,
+  PRIMARY KEY (`ID_Jeux`,`ID_Admin`),
+  KEY `ID_Admin` (`ID_Admin`),
+  CONSTRAINT `gerer_jeux_ibfk_1` FOREIGN KEY (`ID_Jeux`) REFERENCES `jeux` (`ID_Jeux`),
+  CONSTRAINT `gerer_jeux_ibfk_2` FOREIGN KEY (`ID_Admin`) REFERENCES `administration` (`ID_Admin`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `gerer_jeux`
+--
+
+LOCK TABLES `gerer_jeux` WRITE;
+/*!40000 ALTER TABLE `gerer_jeux` DISABLE KEYS */;
+/*!40000 ALTER TABLE `gerer_jeux` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `jeux`
+--
+
+DROP TABLE IF EXISTS `jeux`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `jeux` (
+  `ID_Jeux` int(11) NOT NULL,
+  `nom_jeux` varchar(250) DEFAULT NULL,
+  `image_jeux` varchar(50) DEFAULT NULL,
+  `plateforme` varchar(50) DEFAULT NULL,
+  `date_sortie` date DEFAULT NULL,
+  PRIMARY KEY (`ID_Jeux`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `jeux`
+--
+
+LOCK TABLES `jeux` WRITE;
+/*!40000 ALTER TABLE `jeux` DISABLE KEYS */;
+/*!40000 ALTER TABLE `jeux` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `joueurs`
+--
+
+DROP TABLE IF EXISTS `joueurs`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `joueurs` (
+  `ID_Joueur` int(11) NOT NULL,
+  `nom_joueur` varchar(50) DEFAULT NULL,
+  `prenom_joueur` varchar(50) DEFAULT NULL,
+  `pseudo` varchar(50) DEFAULT NULL,
+  `email` varchar(50) DEFAULT NULL,
+  `motdepasse` varchar(50) DEFAULT NULL,
+  `avatar` varchar(250) DEFAULT NULL,
+  `joue_plateforme` varchar(50) DEFAULT NULL,
+  `ID_localis` int(11) NOT NULL,
+  `ID_Structure` int(11) DEFAULT NULL,
+  PRIMARY KEY (`ID_Joueur`),
+  KEY `ID_localis` (`ID_localis`),
+  KEY `ID_Structure` (`ID_Structure`),
+  CONSTRAINT `joueurs_ibfk_1` FOREIGN KEY (`ID_localis`) REFERENCES `localisation` (`ID_localis`),
+  CONSTRAINT `joueurs_ibfk_2` FOREIGN KEY (`ID_Structure`) REFERENCES `structure_esport` (`ID_Structure`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `joueurs`
+--
+
+LOCK TABLES `joueurs` WRITE;
+/*!40000 ALTER TABLE `joueurs` DISABLE KEYS */;
+/*!40000 ALTER TABLE `joueurs` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `localisation`
+--
+
+DROP TABLE IF EXISTS `localisation`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `localisation` (
+  `ID_localis` int(11) NOT NULL,
+  `departement` varchar(50) DEFAULT NULL,
+  `ville` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`ID_localis`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `localisation`
+--
+
+LOCK TABLES `localisation` WRITE;
+/*!40000 ALTER TABLE `localisation` DISABLE KEYS */;
+/*!40000 ALTER TABLE `localisation` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `participer`
+--
+
+DROP TABLE IF EXISTS `participer`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `participer` (
+  `ID_equipe` int(11) NOT NULL,
+  `ID_Compet` int(11) NOT NULL,
+  PRIMARY KEY (`ID_equipe`,`ID_Compet`),
+  KEY `ID_Compet` (`ID_Compet`),
+  CONSTRAINT `participer_ibfk_1` FOREIGN KEY (`ID_equipe`) REFERENCES `equipe_esport` (`ID_equipe`),
+  CONSTRAINT `participer_ibfk_2` FOREIGN KEY (`ID_Compet`) REFERENCES `competitions` (`ID_Compet`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `participer`
+--
+
+LOCK TABLES `participer` WRITE;
+/*!40000 ALTER TABLE `participer` DISABLE KEYS */;
+/*!40000 ALTER TABLE `participer` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `peut_gerer`
+--
+
+DROP TABLE IF EXISTS `peut_gerer`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `peut_gerer` (
+  `ID_Admin` int(11) NOT NULL,
+  `ID_Classement` int(11) NOT NULL,
+  PRIMARY KEY (`ID_Admin`,`ID_Classement`),
+  KEY `ID_Classement` (`ID_Classement`),
+  CONSTRAINT `peut_gerer_ibfk_1` FOREIGN KEY (`ID_Admin`) REFERENCES `administration` (`ID_Admin`),
+  CONSTRAINT `peut_gerer_ibfk_2` FOREIGN KEY (`ID_Classement`) REFERENCES `classement` (`ID_Classement`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `peut_gerer`
+--
+
+LOCK TABLES `peut_gerer` WRITE;
+/*!40000 ALTER TABLE `peut_gerer` DISABLE KEYS */;
+/*!40000 ALTER TABLE `peut_gerer` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `resaux_sociaux`
+--
+
+DROP TABLE IF EXISTS `resaux_sociaux`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `resaux_sociaux` (
+  `ID_ResauxSoc` int(11) NOT NULL,
+  `nom` varchar(50) DEFAULT NULL,
+  `lien_Res_Soc` text DEFAULT NULL,
+  `ID_Joueur` int(11) NOT NULL,
+  `ID_Structure` int(11) NOT NULL,
+  PRIMARY KEY (`ID_ResauxSoc`),
+  KEY `ID_Joueur` (`ID_Joueur`),
+  KEY `ID_Structure` (`ID_Structure`),
+  CONSTRAINT `resaux_sociaux_ibfk_1` FOREIGN KEY (`ID_Joueur`) REFERENCES `joueurs` (`ID_Joueur`),
+  CONSTRAINT `resaux_sociaux_ibfk_2` FOREIGN KEY (`ID_Structure`) REFERENCES `structure_esport` (`ID_Structure`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `resaux_sociaux`
+--
+
+LOCK TABLES `resaux_sociaux` WRITE;
+/*!40000 ALTER TABLE `resaux_sociaux` DISABLE KEYS */;
+/*!40000 ALTER TABLE `resaux_sociaux` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `se_trouve`
+--
+
+DROP TABLE IF EXISTS `se_trouve`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `se_trouve` (
+  `ID_Joueur` int(11) NOT NULL,
+  `ID_Classement` int(11) NOT NULL,
+  PRIMARY KEY (`ID_Joueur`,`ID_Classement`),
+  KEY `ID_Classement` (`ID_Classement`),
+  CONSTRAINT `se_trouve_ibfk_1` FOREIGN KEY (`ID_Joueur`) REFERENCES `joueurs` (`ID_Joueur`),
+  CONSTRAINT `se_trouve_ibfk_2` FOREIGN KEY (`ID_Classement`) REFERENCES `classement` (`ID_Classement`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `se_trouve`
+--
+
+LOCK TABLES `se_trouve` WRITE;
+/*!40000 ALTER TABLE `se_trouve` DISABLE KEYS */;
+/*!40000 ALTER TABLE `se_trouve` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `structure_esport`
+--
+
+DROP TABLE IF EXISTS `structure_esport`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `structure_esport` (
+  `ID_Structure` int(11) NOT NULL,
+  `nom_structure` varchar(50) DEFAULT NULL,
+  `date_creation_structure` date DEFAULT NULL,
+  `jeux_joue_compet` varchar(50) DEFAULT NULL,
+  `nbr_equipes` int(11) DEFAULT NULL,
+  `logo` varchar(250) DEFAULT NULL,
+  PRIMARY KEY (`ID_Structure`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `structure_esport`
+--
+
+LOCK TABLES `structure_esport` WRITE;
+/*!40000 ALTER TABLE `structure_esport` DISABLE KEYS */;
+/*!40000 ALTER TABLE `structure_esport` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping routines for database 'site_esport'
+--
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2022-10-26 15:19:06
